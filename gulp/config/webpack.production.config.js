@@ -1,17 +1,18 @@
-var path = require('path');
-var webpack = require('webpack');
-var CommonsChunkPlugin = require("./node_modules/webpack/lib/optimize/CommonsChunkPlugin");
+var paths              = require('./paths.js');
+var path               = require('path');
+var webpack            = require('webpack');
+var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 
 module.exports = {
   entry: {
     app: [
-      './src/scripts/router'
+      paths.source.main_script
     ],
-    landingPage: './src/scripts/LandingPageEntry'
+    //landingPage: './src/scripts/LandingPageEntry'
   },
   devtool: 'source-map',
   output: {
-      path: path.join(__dirname, "public"),
+      path: path.join(__dirname, "../../", paths.dest.app),
       filename: "[name].bundle.js",
       chunkFilename: "[id].chunk.js"
   },
@@ -32,13 +33,12 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin(),
   ],
   resolve: {
-    extensions: ['', '.js', '.cjsx', '.coffee']
+    extensions: ['', '.js', '.jsx']
   },
   module: {
     loaders: [
       { test: /\.css$/, loaders: ['style', 'css']},
-      { test: /\.cjsx$/, loaders: ['coffee', 'cjsx']},
-      { test: /\.coffee$/, loader: 'coffee' }
+      { test: /\.jsx$/, loaders: ['jsx']}
     ]
   }
 };

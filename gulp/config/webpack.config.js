@@ -1,16 +1,17 @@
+var paths = require('./paths.js');
 var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
   entry: [
-    "webpack-dev-server/client?http://0.0.0.0:8080",
+    "webpack-dev-server/client?http://0.0.0.0:1337",
     'webpack/hot/dev-server',
-    './src/scripts/router'
+    paths.source.main_script
   ],
   devtool: "source-map",
   debug: true,
   output: {
-    path: path.join(__dirname, "public"),
+    path: path.join(__dirname, "../../", paths.dest.app),
     filename: 'bundle.js'
   },
   resolveLoader: {
@@ -21,13 +22,12 @@ module.exports = {
     new webpack.IgnorePlugin(/vertx/) // https://github.com/webpack/webpack/issues/353
   ],
   resolve: {
-    extensions: ['', '.js', '.cjsx', '.coffee']
+    extensions: ['', '.js', '.jsx']
   },
   module: {
     loaders: [
       { test: /\.css$/, loaders: ['style', 'css']},
-      { test: /\.cjsx$/, loaders: ['react-hot', 'coffee', 'cjsx']},
-      { test: /\.coffee$/, loader: 'coffee' }
+      { test: /\.jsx$/, loaders: ['react-hot', 'jsx']}
     ]
   }
 };
