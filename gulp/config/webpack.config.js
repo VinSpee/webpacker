@@ -6,13 +6,14 @@ module.exports = {
   entry: [
     "webpack-dev-server/client?http://0.0.0.0:1337",
     'webpack/hot/dev-server',
-    paths.source.main_script
+    paths.source.main_script,
+    paths.source.main_style
   ],
   devtool: "source-map",
   debug: true,
   output: {
     path: path.join(__dirname, "../../", paths.dest.app),
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   resolveLoader: {
     modulesDirectories: ['node_modules']

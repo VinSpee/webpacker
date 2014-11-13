@@ -8,7 +8,7 @@ var devServer = new WebpackDevServer(webpack(webpackConfig), {
   contentBase: paths.dest.app,
   hot: true,
   watchDelay: 100,
-  noInfo: true
+  noInfo: false
 });
 
 module.exports = devServer;
