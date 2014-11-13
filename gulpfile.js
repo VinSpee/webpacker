@@ -27,8 +27,8 @@ gulp.task('build', ['webpack:build', 'styles']);
 gulp.task('watch', function(cb) {
   seq(
     'pages',
-    'webpack-dev-server',
     'styles',
+    'webpack-dev-server',
     cb
   );
   return gulp.watch([paths.source.styles], ['styles']);

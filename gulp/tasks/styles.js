@@ -37,7 +37,6 @@ gulp.task('styles', function() {
     .pipe($.size())
     .pipe(gulp.dest(paths.dest.styles))
     .pipe(map(function(a, cb) {
-      console.log(devServer);
       if(devServer.invalidate != null) {
         devServer.invalidate();
       }
